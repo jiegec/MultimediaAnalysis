@@ -3,8 +3,8 @@ import imageio
 import numpy as np
 import os
 
-bins_count = 16
-#bins_count = 128
+#bins_count = 16
+bins_count = 128
 
 def histo(image):
     bins = [0] * bins_count
@@ -20,7 +20,7 @@ def histo(image):
                 bins[(r // 64) + (g // 32) * 4 + (b // 64) * 32] += 1
             else:
                 exit()
-    return np.array(bins)
+    return np.array(bins, dtype=np.float) / h / w
 
 root = './histo-%d' % bins_count
 with open('AllImages.txt', 'r') as f:
